@@ -9,9 +9,8 @@ const gameReducer = (state = initialState, action) => {
         case 'GET_USERS':
             return {
                 ...state,
-                users: {
-                     ...payload
-                }
+                users: [...payload]
+
             }
         default:
             return state

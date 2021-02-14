@@ -1,13 +1,13 @@
 import React from 'react';
 import {Button, Card, CardActions, CardContent, Grid, Typography} from "@material-ui/core";
 
-const User = ({id, name,surname}) => {
+const User = ({name,surname}) => {
 
     return (
-        <Grid item key={id}>
+        <Grid item>
             <Card className='userCard' variant="outlined">
                 <CardContent>
-                    <Typography className={'userName'} color="textSecondary" gutterBottom variant={"h2"}>
+                    <Typography className={'userName'} color="textSecondary" gutterBottom variant={"h3"}>
                         Name:{name} {surname}
                     </Typography>
                 </CardContent>
