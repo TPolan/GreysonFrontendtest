@@ -7,12 +7,15 @@ import {BrowserRouter} from "react-router-dom";
 import {Route} from "react-router";
 import FormPage from "../FormPage/FormPage";
 import NavBar from "../../components/NavBar/NavBar";
+import UserDetail from "../../components/UserDetail/UserDetail";
 
 const MainPage = () => {
     const dispatch = useDispatch();
     const [users, setUsers] = useState([]);
+    const [detailId, setDetailId] = useState('');
     const userArr = useSelector(state => state.users);
-    const userList = users.map(user => <User name={user.name} surname={user.surname} id={user.id} key={user.id}/>);
+    const userList = users.map(user => <User setDetailId={setDetailId} name={user.name} surname={user.surname} id={user.id} key={user.id}/>);
+
 
     useEffect(() => {
         dispatch(getUsers());
@@ -20,7 +23,6 @@ const MainPage = () => {
     useEffect(() => {
         setUsers(userArr);
     }, [userArr]);
-
 
     return (
         <Container>
@@ -43,18 +45,18 @@ const MainPage = () => {
                 />
                 <Route
                     path='/user/add'
-                    component={FormPage}
                     exact
+                    component={FormPage}
                 />
                 <Route
                     path='/user/update'
-                    component={FormPage}
                     exact
+                    component={FormPage}
                 />
                 <Route
-                    path='/user/detail'
-                    component={FormPage}
+                    path={`/user/${detailId}`}
                     exact
+                    render={()=><UserDetail id={detailId}/>}
                 />
             </BrowserRouter>
         </Container>
