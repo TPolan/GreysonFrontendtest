@@ -3,6 +3,10 @@ import {Container, Grid, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {getUsers} from "../../redux/actions/actions";
 import User from "../../components/User/User";
+import {BrowserRouter} from "react-router-dom";
+import {Route} from "react-router";
+import FormPage from "../FormPage/FormPage";
+import NavBar from "../../components/NavBar/NavBar";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -10,14 +14,12 @@ const MainPage = () => {
     const userArr = useSelector(state => state.users);
     const userList = users.map(user => <User name={user.name} surname={user.surname} id={user.id} key={user.id}/>);
 
-    useEffect( () => {
+    useEffect(() => {
         dispatch(getUsers());
     }, []);
-    useEffect( () => {
+    useEffect(() => {
         setUsers(userArr);
     }, [userArr]);
-
-
 
 
     return (
@@ -25,12 +27,37 @@ const MainPage = () => {
             <Typography variant={"h1"}>
                 Welcome to our CRUD test
             </Typography>
-            <Grid
-                container justify={"center"}
-                direction={"column"}
-            >
-                {userList}
-            </Grid>
+            <BrowserRouter>
+                <NavBar/>
+                <Route
+                    path='/'
+                    exact
+                    render={()=>
+                        <Grid
+                            container justify={"center"}
+                            direction={"column"}
+                        >
+                            {userList}
+                        </Grid>
+                    }
+                />
+                <Route
+                    path='/user/add'
+                    component={FormPage}
+                    exact
+                />
+                <Route
+                    path='/user/update'
+                    component={FormPage}
+                    exact
+                />
+                <Route
+                    path='/user/detail'
+                    component={FormPage}
+                    exact
+                />
+            </BrowserRouter>
+
         </Container>
     )
 }
