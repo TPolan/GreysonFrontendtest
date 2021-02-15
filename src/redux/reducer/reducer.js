@@ -10,7 +10,11 @@ const gameReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: [...payload]
-
+            }
+        case 'DELETE_USER':
+            return {
+                ...state,
+                users: [...payload]
             }
         default:
             return state

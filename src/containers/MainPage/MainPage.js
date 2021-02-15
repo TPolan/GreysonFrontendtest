@@ -8,7 +8,7 @@ const MainPage = () => {
     const dispatch = useDispatch();
     const [users, setUsers] = useState([]);
     const userArr = useSelector(state => state.users);
-    const userList = users.map(user => <User name={user.name} surname={user.surname} key={user.id}/>);
+    const userList = users.map(user => <User name={user.name} surname={user.surname} id={user.id} key={user.id}/>);
 
     useEffect( () => {
         dispatch(getUsers());
@@ -26,7 +26,9 @@ const MainPage = () => {
                 Welcome to our CRUD test
             </Typography>
             <Grid
-                container justify={"center"}>
+                container justify={"center"}
+                direction={"column"}
+            >
                 {userList}
             </Grid>
         </Container>
