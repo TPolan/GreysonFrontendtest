@@ -1,24 +1,47 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography} from "@material-ui/core";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserDetail} from "../../redux/actions/actions";
 
 const UserDetail = ({id}) => {
+    const dispatch = useDispatch();
+    const {name, surname, job} = useSelector(state => state.userDetail)
+
+    useEffect(() => {
+        dispatch(getUserDetail(id));
+    }, [])
 
     return (
         <>
             <Card>
                 <CardActionArea>
                     <CardMedia
-
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="Contemplative Reptile"
+                        style={{height: 500}}
+                        image='../../images/user.png'
+                        title="default user"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            Lizard
+                        <Typography
+                            gutterBottom variant="h5"
+                            color="textSecondary"
+                            component="h2"
+                        >
+                            Name: {name}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                            across all continents except Antarctica
+                        <Typography
+                            gutterBottom
+                            variant="h5"
+                            color="textSecondary"
+                            component="h2"
+                        >
+                            Surname: {surname}
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            component="p"
+                        >
+                            Job: {job}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -31,8 +54,6 @@ const UserDetail = ({id}) => {
                     </Button>
                 </CardActions>
             </Card>
-            );
-            }
         </>
     )
 }

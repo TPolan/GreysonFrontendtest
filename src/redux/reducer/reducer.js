@@ -1,6 +1,6 @@
 const initialState = {
     users: [],
-
+    userDetail: {}
 }
 
 const gameReducer = (state = initialState, action) => {
@@ -23,6 +23,11 @@ const gameReducer = (state = initialState, action) => {
                     ...state.users,
                     {...payload}
                 ]
+            }
+        case 'GET_DETAIL':
+            return {
+                ...state,
+                userDetail: {...payload}
             }
         default:
             return state
