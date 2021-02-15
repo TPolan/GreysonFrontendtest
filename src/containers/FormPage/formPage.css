@@ -1,0 +1,9 @@
+.name, .surname, .job {
+    margin: 2px;
+    padding: 2px;
+}
+.formPage {
+    padding: 5px;
+    margin: 20px;
+    justify-content: center;
+}

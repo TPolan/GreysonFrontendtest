@@ -24,8 +24,8 @@ const MainPage = () => {
 
     return (
         <Container>
-            <Typography variant={"h1"}>
-                Welcome to our CRUD test
+            <Typography variant={"h2"}>
+                Welcome to my CRUD app
             </Typography>
             <BrowserRouter>
                 <NavBar/>
@@ -57,7 +57,6 @@ const MainPage = () => {
                     exact
                 />
             </BrowserRouter>
-
         </Container>
     )
 }

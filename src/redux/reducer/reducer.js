@@ -16,6 +16,14 @@ const gameReducer = (state = initialState, action) => {
                 ...state,
                 users: [...payload]
             }
+        case 'ADD_USER':
+            return {
+                ...state,
+                users: [
+                    ...state.users,
+                    {...payload}
+                ]
+            }
         default:
             return state
     }
