@@ -1,27 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Grid, TextField} from '@material-ui/core';
-import {useDispatch} from 'react-redux';
-import {addUser} from '../../redux/actions/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {addUser, updateUser} from '../../redux/actions/actions';
 import './formPage.css';
+import {useLocation} from "react-router";
 
 const FormPage = props => {
     const dispatch = useDispatch();
-    const [name, setName] = useState();
-    const [surname, setSurname] = useState();
-    const [job, setJob] = useState();
-
+    const {name: detailName, surname: detailSurname, job: detailJob, id} = useSelector(state => state.userDetail)
+    const [updateButton, setButton] = useState(false);
+    const [name, setName] = useState(detailName);
+    const [surname, setSurname] = useState(detailSurname);
+    const [job, setJob] = useState(detailJob);
+    const url = useLocation().pathname;
     const handleChange = (event) => {
         switch (event.target.id) {
-            case 'name' :
+            case 'name':
                 return setName(event.target.value);
-            case 'surname' :
+            case 'surname':
                 return setSurname(event.target.value);
-            case 'job' :
+            case 'job':
                 return setJob(event.target.value);
         }
     };
 
-    const handleAddUser = () => {
+    const handleAdd = () => {
         dispatch(addUser({
             name,
             surname,
@@ -29,6 +32,30 @@ const FormPage = props => {
         }));
         props.history.push('/');
     };
+
+    const handleUpdate = () => {
+        dispatch(updateUser({
+            id,
+            name,
+            surname,
+            job
+        }));
+        props.history.push('/');
+    };
+
+    useEffect(() => {
+        if (url === '/user/update') {
+            setButton(true)
+            setName(detailName);
+            setSurname(detailSurname);
+            setJob(detailJob);
+        } else {
+            setButton(false)
+            setName('');
+            setSurname('');
+            setJob('');
+        }
+    }, []);
 
     return (
         <Grid item className='formPage' container>
@@ -62,9 +89,10 @@ const FormPage = props => {
                         item
                     />
                 </Grid>
-                <Button onClick={handleAddUser} item>
-                    Add User
-                </Button>
+                {updateButton ?
+                    <Button onClick={handleUpdate} item>Update</Button> :
+                    <Button onClick={handleAdd} item>Add</Button>
+                }
             </form>
         </Grid>
     )

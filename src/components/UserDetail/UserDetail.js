@@ -1,15 +1,26 @@
 import React, {useEffect} from 'react';
 import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {getUserDetail} from "../../redux/actions/actions";
+import {deleteUser, getUserDetail} from "../../redux/actions/actions";
+import {useHistory} from "react-router";
 
 const UserDetail = ({id}) => {
     const dispatch = useDispatch();
     const {name, surname, job} = useSelector(state => state.userDetail)
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(getUserDetail(id));
     }, [])
+
+    const handleDelete = () => {
+        dispatch(deleteUser(id));
+        history.push('/');
+    };
+
+    const handleUpdate = () => {
+        history.push('/user/update')
+    }
 
     return (
         <>
@@ -46,10 +57,18 @@ const UserDetail = ({id}) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
+                    <Button
+                        size="small"
+                        color="primary"
+                        onClick={handleDelete}
+                    >
                         Delete
                     </Button>
-                    <Button size="small" color="primary">
+                    <Button
+                        size="small"
+                        color="primary"
+                        onClick={handleUpdate}
+                    >
                         Update
                     </Button>
                 </CardActions>
