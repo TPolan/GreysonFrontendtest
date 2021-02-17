@@ -25,7 +25,7 @@ const UserDetail = ({id}) => {
     }
 
     return (
-        <Card className={'detailCard'}>
+        <Card className={'detailCard'} item>
             <Grid container justify={'center'}>
                 <Grid item>
                     <img src={image} alt='default user'/>

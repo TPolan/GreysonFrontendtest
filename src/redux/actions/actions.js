@@ -13,7 +13,7 @@ export const addUser = payload => {
                     }
                 })
             })
-            .catch(response => console.log(response.err.message));
+            .catch(error => console.log(error));
     }
 };
 
@@ -28,6 +28,7 @@ export const deleteUser = id => {
                     payload: updatedUsers
                 });
             })
+            .catch(error => console.log(error));
     }
 };
 
@@ -41,6 +42,7 @@ export const getUserDetail = id => {
                     payload: data
                 })
             })
+            .catch(error => console.log(error));
     }
 };
 
@@ -71,6 +73,6 @@ export const updateUser = payload => {
                     payload: updatedUsers
                 });
             })
-            .catch(response => console.log(response.err.message));
+            .catch(error => console.log(error));
     }
 };

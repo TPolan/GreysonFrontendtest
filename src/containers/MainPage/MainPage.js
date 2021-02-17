@@ -14,7 +14,8 @@ const MainPage = () => {
     const [users, setUsers] = useState([]);
     const [detailId, setDetailId] = useState('');
     const userArr = useSelector(state => state.users);
-    const userList = users.map(user => <User setDetailId={setDetailId} name={user.name} surname={user.surname} id={user.id} key={user.id}/>);
+    const userList = users.map(user => <User setDetailId={setDetailId} name={user.name} surname={user.surname}
+                                             id={user.id} key={user.id}/>);
 
 
     useEffect(() => {
@@ -34,9 +35,10 @@ const MainPage = () => {
                 <Route
                     path='/'
                     exact
-                    render={()=>
+                    render={() =>
                         <Grid
                             container
+                            style={{margin:10}}
                             justify={"center"}
                             direction={"column"}
                             alignItems={"center"}
@@ -58,7 +60,14 @@ const MainPage = () => {
                 <Route
                     path={`/user/${detailId}`}
                     exact
-                    render={()=><UserDetail id={detailId}/>}
+                    render={() =>
+                        <Grid
+                            container
+                            justify={"center"}
+                        >
+                            <UserDetail id={detailId}/>
+                        </Grid>
+                    }
                 />
             </BrowserRouter>
         </Container>
