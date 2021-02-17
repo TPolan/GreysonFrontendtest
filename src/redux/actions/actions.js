@@ -11,8 +11,9 @@ export const addUser = payload => {
                         id,
                         ...payload
                     }
-                });
+                })
             })
+            .catch(response => console.log(response.err.message));
     }
 };
 
@@ -49,7 +50,8 @@ export const getUsers = () => {
             .then((response) => dispatch({
                 type: 'GET_USERS',
                 payload: [...response.data]
-            }));
+            }))
+            .catch(error => console.log(error));
     }
 };
 
@@ -63,12 +65,12 @@ export const updateUser = payload => {
             return user;
         })
         axios.post('http://localhost:8888/user/' + payload.id, payload)
-            .then(response => response.data.id)
-            .then(id => {
+            .then(() => {
                 dispatch({
                     type: 'UPDATE_USER',
                     payload: updatedUsers
                 });
             })
+            .catch(response => console.log(response.err.message));
     }
 };

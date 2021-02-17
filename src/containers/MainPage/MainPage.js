@@ -36,8 +36,10 @@ const MainPage = () => {
                     exact
                     render={()=>
                         <Grid
-                            container justify={"center"}
+                            container
+                            justify={"center"}
                             direction={"column"}
+                            alignItems={"center"}
                         >
                             {userList}
                         </Grid>

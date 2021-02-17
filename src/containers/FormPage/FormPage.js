@@ -63,7 +63,7 @@ const FormPage = props => {
                 <Grid container direction={'column'} item>
                     <TextField
                         id='name'
-                        className='name'
+                        className='formField'
                         onChange={(event => handleChange(event))}
                         value={name}
                         label='Name'
@@ -72,7 +72,7 @@ const FormPage = props => {
                     />
                     <TextField
                         id='surname'
-                        className='surname'
+                        className='formField'
                         onChange={(event => handleChange(event))}
                         value={surname}
                         label='Surname'
@@ -81,7 +81,7 @@ const FormPage = props => {
                     />
                     <TextField
                         id='job'
-                        className='job'
+                        className='formField'
                         onChange={(event => handleChange(event))}
                         value={job}
                         label='Job'

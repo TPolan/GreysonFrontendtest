@@ -3,6 +3,7 @@ import {Button, Card, CardActions, CardContent, Grid, Typography} from "@materia
 import {useDispatch} from "react-redux";
 import {deleteUser} from "../../redux/actions/actions";
 import {useHistory} from "react-router";
+import './user.css';
 
 const User = ({name,surname,id, setDetailId}) => {
     const dispatch = useDispatch()
@@ -26,20 +27,24 @@ const User = ({name,surname,id, setDetailId}) => {
                                 gutterBottom
                                 variant={"h3"}
                     >
-                        Name:{name} {surname}
+                        {name} {surname}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button
-                        size="small"
-                        onClick={handleDelete}>
-                        Delete
-                    </Button>
-                    <Button
-                        size="small"
-                        onClick={handleDetail}>
-                        Detail
-                    </Button>
+                    <Grid container justify={'center'}>
+                        <Button
+                            item
+                            size="small"
+                            onClick={handleDelete}>
+                            Delete
+                        </Button>
+                        <Button
+                            item
+                            size="small"
+                            onClick={handleDetail}>
+                            Detail
+                        </Button>
+                    </Grid>
                 </CardActions>
             </Card>
         </Grid>
