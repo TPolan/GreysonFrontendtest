@@ -14,8 +14,13 @@ const MainPage = () => {
     const [users, setUsers] = useState([]);
     const [detailId, setDetailId] = useState('');
     const userArr = useSelector(state => state.users);
-    const userList = users.map(user => <User setDetailId={setDetailId} name={user.name} surname={user.surname}
-                                             id={user.id} key={user.id}/>);
+    const userList = users.map(user =>
+        <User
+            setDetailId={setDetailId}
+            name={user.name} surname={user.surname}
+            id={user.id}
+            key={user.id}/>
+    );
 
 
     useEffect(() => {
@@ -38,7 +43,7 @@ const MainPage = () => {
                     render={() =>
                         <Grid
                             container
-                            style={{margin:10}}
+                            style={{margin: 10}}
                             justify={"center"}
                             direction={"column"}
                             alignItems={"center"}
